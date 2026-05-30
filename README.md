@@ -1,6 +1,6 @@
-# AutoResources NoMercy
+# AutoResources
 
-AutoResources NoMercy es un script de AutoHotkey v2 para automatizar el farmeo de materiales Life Skill en un juego mediante detección de píxeles y control de ratón/teclado.
+AutoResources es un script de AutoHotkey v2 para automatizar el farmeo de materiales Life Skill en un juego mediante detección de píxeles y control de ratón/teclado.
 
 ## Uso básico
 
