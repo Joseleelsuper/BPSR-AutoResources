@@ -67,8 +67,7 @@ Init() {
     DetectGameWindow()
 
     ; -- Calcular escala basada en el tamaño de la ventana del juego
-    Config.Scale := { x: (Config.GameWindow.w + 0.0) / Config.Base.w
-        , y: (Config.GameWindow.h + 0.0) / Config.Base.h }
+    Config.Scale := { x: (Config.GameWindow.w + 0.0) / Config.Base.w, y: (Config.GameWindow.h + 0.0) / Config.Base.h }
 
     ; -- Precalcular áreas escaladas relativas a la ventana del juego
     Config.Areas := Map()
@@ -89,7 +88,9 @@ Init() {
     State.lastClickTime["target"] := 0
     State.lastClickTime["target2"] := 0
 
-    Log("INFO", "Init completado | Ventana del juego: " . Config.GameWindow.w . "x" . Config.GameWindow.h . " en (" . Config.GameWindow.x . "," . Config.GameWindow.y . ") | ScaleX=" . Config.Scale.x . ", ScaleY=" . Config.Scale.y)
+    Log("INFO", "Init completado | Ventana del juego: " . Config.GameWindow.w . "x" . Config.GameWindow.h . " en (" .
+        Config.GameWindow.x . "," . Config.GameWindow.y . ") | ScaleX=" . Config.Scale.x . ", ScaleY=" . Config.Scale.y
+    )
 }
 
 ; Detecta la ventana del juego y guarda su posición y tamaño
@@ -128,7 +129,8 @@ DetectGameWindow() {
         clientY := NumGet(point, 4, "Int")
 
         Config.GameWindow := { x: clientX, y: clientY, w: clientW, h: clientH, exe: detectedExe }
-        Log("INFO", "Ventana del juego detectada (" . detectedExe . "): " . clientW . "x" . clientH . " en posición (" . clientX . "," . clientY . ")")
+        Log("INFO", "Ventana del juego detectada (" . detectedExe . "): " . clientW . "x" . clientH . " en posición (" .
+            clientX . "," . clientY . ")")
     } else {
         ; Si no se encuentra ninguna ventana, usar pantalla completa como fallback
         Config.GameWindow := { x: 0, y: 0, w: A_ScreenWidth, h: A_ScreenHeight, exe: "ninguno" }
@@ -141,7 +143,8 @@ DetectGameWindow() {
                 exeList .= ", "
         }
 
-        Log("WARN", "No se detectó la ventana del juego. Ejecutables buscados: " . exeList . " -> Usando pantalla completa como fallback")
+        Log("WARN", "No se detectó la ventana del juego. Ejecutables buscados: " . exeList .
+            " -> Usando pantalla completa como fallback")
     }
 }
 
@@ -187,7 +190,7 @@ CheckPixelsLogic(targetName) {
     ; -- Verificar cooldown
     currentTime := A_TickCount
     timeSinceLastClick := currentTime - State.lastClickTime[targetName]
-    
+
     if (timeSinceLastClick < Config.Timings.cooldown) {
         ; Aún en cooldown, no hacer nada
         return
@@ -199,23 +202,24 @@ CheckPixelsLogic(targetName) {
 
     ; -- Si detecta color blanco, ejecutar Alt+Click
     if (foundPixel) {
-        Log("INFO", "Color blanco detectado en " . targetName . " en (" . foundPixel.x . ", " . foundPixel.y . ") -> Ejecutando Alt+Click")
-        
+        Log("INFO", "Color blanco detectado en " . targetName . " en (" . foundPixel.x . ", " . foundPixel.y .
+            ") -> Ejecutando Alt+Click")
+
         ; Guardar posición actual del ratón
         SaveMousePositionOnce()
-        
+
         ; Realizar Alt+Click (mantener Alt presionado durante el click)
         Send("{Alt down}")
         Sleep(50)
         Click(foundPixel.x . " " . foundPixel.y)
         Sleep(50)
         Send("{Alt up}")
-        
+
         Log("INFO", "Alt+Click ejecutado en " . targetName . " (" . foundPixel.x . ", " . foundPixel.y . ")")
-        
+
         ; Actualizar tiempo del último click
         State.lastClickTime[targetName] := A_TickCount
-        
+
         ; Restaurar posición del ratón
         Sleep(Config.Timings.afterClick)
         RestoreMousePosition()
@@ -252,11 +256,11 @@ RestoreMousePosition() {
 ; Devuelve {x, y} si encuentra uno, o false si no.
 FindWhitePixelInArea(area) {
     global Config
-    
+
     ; Iterar por cada píxel del área
-    Loop area.y2 - area.y1 + 1 {
+    loop area.y2 - area.y1 + 1 {
         y := area.y1 + A_Index - 1
-        Loop area.x2 - area.x1 + 1 {
+        loop area.x2 - area.x1 + 1 {
             x := area.x1 + A_Index - 1
             color := GetColorAtXY(x, y)
             if (ColorCloseEnough(color, Config.Colors.white, Config.Tolerance.primary)) {
@@ -278,15 +282,15 @@ GetColorAtXY(x, y) {
 
 ; Comparación de colores con tolerancia por canal (R, G, B).
 ColorCloseEnough(color1, color2, tolerance := 10) {
-    c1r := (color1 >> 16)   & 0xFF
-    c1g := (color1 >> 8)    & 0xFF
-    c1b :=  color1          & 0xFF
-    c2r := (color2 >> 16)   & 0xFF
-    c2g := (color2 >> 8)    & 0xFF
-    c2b :=  color2          & 0xFF
-    return ( Abs(c1r - c2r) <= tolerance
-        && Abs(c1g - c2g) <= tolerance
-        && Abs(c1b - c2b) <= tolerance )
+    c1r := (color1 >> 16) & 0xFF
+    c1g := (color1 >> 8) & 0xFF
+    c1b := color1 & 0xFF
+    c2r := (color2 >> 16) & 0xFF
+    c2g := (color2 >> 8) & 0xFF
+    c2b := color2 & 0xFF
+    return (Abs(c1r - c2r) <= tolerance
+    && Abs(c1g - c2g) <= tolerance
+    && Abs(c1b - c2b) <= tolerance)
 }
 
 ; Libera todos los recursos de estado al desactivar.

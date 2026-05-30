@@ -15,6 +15,10 @@ Podéis descargar la última versión aquí: https://github.com/Joseleelsuper/Au
 
 Para ejecutar el fichero .ahk necesitarás tener instalado [AutoHotkey v2.0.19](https://github.com/AutoHotkey/AutoHotkey/releases/tag/v2.0.19)
 
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
+
 ## Contacto
 
-Podéis encontrarme en Discord como Joseleelsuper, dentro de la [Guild HusaresAlados](https://discord.gg/rY9mt4Gn8d).
+Podéis encontrarme en Discord como Joseleelsuper, dentro de la [Guild DaoPalace](https://discord.gg/brwaAZktrn).
