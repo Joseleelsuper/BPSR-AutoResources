@@ -1,24 +1,34 @@
-# AutoResources
+# BPSR-AutoResources
 
-AutoResources es un script de AutoHotkey v2 para automatizar el farmeo de materiales Life Skill en un juego mediante detección de píxeles y control de ratón/teclado.
+Automates Life Skill resource farming in Blue Protocol: Star Resonance using pixel detection and mouse and keyboard input.
 
-## Uso básico
+## What it does
 
-Para ejecutarlo, simplemente descargas el .exe y lo abres.
+The script automates the resource-farming flow. Use Focused mode when you want the focused farming behavior.
 
-Lo único que tienes que hacer es ponerte en la zona de farmeo y:
-- F8 para activar/desactivar el farmeo Focused.
-- F9 para activar/desactivar el script.
-- F10 para eliminar de memoria el script (El equivalente a cerrarlo con la X y tener que volver a abrirlo).
+## Quick start
 
-Podéis descargar la última versión aquí: https://github.com/Joseleelsuper/AutoResources/releases/latest
+1. Download and run **AutoResources.exe** from the [latest release](https://github.com/Joseleelsuper/BPSR-AutoResources/releases/latest).
+2. Open the game and move to the resource-farming area.
+3. Press **F9** to start or pause automation. Press **F10** to exit the script.
 
-Para ejecutar el fichero .ahk necesitarás tener instalado [AutoHotkey v2.0.19](https://github.com/AutoHotkey/AutoHotkey/releases/tag/v2.0.19)
+## Hotkeys
 
-## Licencia
+- **F8**: toggle Focused farming mode.
+- **F9**: start or pause automation.
+- **F10**: exit the script.
 
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
+## Requirements and compatibility
 
-## Contacto
+- Windows.
+- To run the source file, install [AutoHotkey v2.0.19](https://github.com/AutoHotkey/AutoHotkey/releases/tag/v2.0.19).
+- Use a 16:9 game window. The 16:10 resolution 1440x900 is not supported; a centered 1280x720 window is recommended.
+- If input is not detected, try running the game as administrator.
 
-Podéis encontrarme en Discord como Joseleelsuper, dentro de la [Guild DaoPalace](https://discord.gg/brwaAZktrn).
+## License
+
+This project is licensed under the MIT License. See [LICENSE](./LICENSE).
+
+## Support
+
+Join the [DaoPalace Discord server](https://discord.gg/brwaAZktrn) and find Joseleelsuper.
